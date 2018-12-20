@@ -20,6 +20,8 @@ $ export MYSHELL="/bin/sh"
 -	$ chmod 4755 vul
 -	$ gdb ./vul
 
+<img src="/Images/1.png" width=500 height=500>
+
  
 4. Overflowing the Buffer with all ‘A’ to check ending limit of Return Address(EIP)</br>
 **Command:** 
